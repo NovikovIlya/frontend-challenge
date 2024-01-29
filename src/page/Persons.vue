@@ -1,0 +1,185 @@
+<script setup lang="ts">
+import { ref, onMounted, computed } from 'vue';
+import { useMovieStore } from '../store/index';
+
+
+// data
+const movieStore = useMovieStore();
+const cartItems = ref(JSON.parse(localStorage.getItem('persons')) || []);
+
+// functions
+const imageLoadOnError = (e) => {
+  e.target.src = 'https://myivancrismanalo.files.wordpress.com/2017/10/cropped-unknown_person.png';
+};
+
+const addFavortieCat = (person) => {
+  if (idArray.value.includes(person.id)) {
+    deleteFavoriteCat(person);
+    return;
+  }
+  const prev = JSON.parse(localStorage.getItem('persons')) || [];
+  prev.push(person);
+  localStorage.setItem('persons', JSON.stringify(prev));
+  cartItems.value = JSON.parse(localStorage.getItem('persons')) || [];
+};
+
+const deleteFavoriteCat = (person) => {
+  const prev = JSON.parse(localStorage.getItem('persons')) || [];
+  const newPrew = prev.filter((item) => item.id !== person.id);
+  localStorage.setItem('persons', JSON.stringify(newPrew));
+
+  cartItems.value = JSON.parse(localStorage.getItem('persons')) || [];
+};
+
+/// computed
+const idArray = computed(() => {
+  const newArray = cartItems.value.map((item) => {
+    return item.id;
+  });
+  return newArray;
+});
+
+// Lifecycle hooks
+onMounted(() => {
+  if(movieStore.data.length === 0){
+    movieStore.load();
+  }
+});
+</script>
+
+<template>
+  <div class="ww" style="width: 100%">
+    <ul v-infinite-scroll="movieStore.load" class="infinite-list" infinite-scroll-immediate="false">
+      <TransitionGroup name="list">
+        <li v-for="(person, index) in movieStore.data" :key="person.id" class="infinite-list-item">
+          <div @click="addFavortieCat(person)" class="cat">
+            <img
+              @error="imageLoadOnError"
+              class="catHover"
+              :src="
+                person.url
+                  ? person.url
+                  : 'https://myivancrismanalo.files.wordpress.com/2017/10/cropped-unknown_person.png'
+              " />
+            <img
+              class="heart"
+              src="https://cdn.builder.io/api/v1/image/assets/TEMP/d6150d99cc284d656b809a6f15e5bc9d6f0da1a4be517e7466a0dad9525bac06" />
+            <img
+              :class="{ hiddenWatch: idArray.includes(person.id) }"
+              class="fullheart"
+              src="https://cdn.builder.io/api/v1/image/assets/TEMP/45cce83542570fa99a82a171165d936e831b1ca10784f6b2df86696116852751?" />
+          </div>
+        </li>
+      </TransitionGroup>
+    </ul>
+    <div class="zaga" v-if="movieStore.isLoading">...загружаем {{ movieStore.page === 1 ? null : 'еще' }} котиков...</div>
+    <div class="err" v-if="movieStore.isError">
+      <el-col :sm="12" :lg="6">
+        <el-result icon="error" title="Произошла ошибка" sub-title="Попробуйте пожалуйста позднее">
+        </el-result>
+      </el-col>
+    </div>
+  </div>
+</template>
+
+<style scoped lang="scss">
+.zaga {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 30px;
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
+  letter-spacing: 0.25px;
+}
+
+.watch {
+  visibility: visible;
+}
+.cat {
+  position: relative;
+  
+}
+.infinite-list-item{
+  width: 225px;
+  height: 225px
+}
+.catHover {
+  width: 225px;
+  height: 225px;
+  cursor: pointer;
+}
+
+.heart {
+  position: absolute;
+  bottom: 19px;
+  right: 15px;
+  z-index: 1000;
+  opacity: 0;
+}
+.fullheart {
+  position: absolute;
+  bottom: 19px;
+  right: 15px;
+  z-index: 1000;
+  visibility: hidden;
+}
+.hiddenWatch {
+  visibility: visible !important;
+}
+
+.cat:hover .heart {
+  opacity: 1;
+}
+.ww {
+  margin-top: 10px;
+}
+.infinite-list {
+  height: 99%;
+  padding-left: 3%;
+  padding-right: 3%;
+  list-style: none;
+}
+.infinite-list .infinite-list-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--el-color-primary);
+  margin-bottom: 40px;
+  border-radius: 20px;
+}
+.infinite-list .infinite-list-item + .list-item {
+  margin-top: 10px;
+}
+.infinite-list {
+  display: grid;
+  grid-template-columns: 20% 20% 20% 20% 20%;
+}
+
+
+.err {
+  display: flex;
+  justify-content: center;
+}
+
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.5s ease;
+}
+.list-enter-from,
+.list-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
+}
+
+@media screen and (max-width: 600px) {
+  .infinite-list {
+    grid-template-columns: 100%;
+  }
+
+  .err {
+    margin-top: 10px;
+  }
+}
+</style>
