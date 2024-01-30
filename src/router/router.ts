@@ -1,6 +1,6 @@
 import { createWebHistory, createRouter } from 'vue-router';
 import Vue from 'vue';
-import Persons from '../page/Persons.vue';
+import HomeCats from '../page/HomeCats.vue';
 import FavoriteList from '../page/FavoriteList/FavoritesList.vue';
 import NotFound from '../page/NotFound.vue'
 
@@ -8,8 +8,8 @@ import NotFound from '../page/NotFound.vue'
 const routes = [
   {
     path: '/',
-    name: 'Persons',
-    component: Persons,
+    name: 'HomeCats',
+    component: HomeCats,
   },
   {
     path: '/favorite',

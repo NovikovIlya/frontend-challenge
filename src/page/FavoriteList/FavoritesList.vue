@@ -15,7 +15,7 @@ const deleteFavoriteCat = (person) => {
 </script>
 
 <template>
-  <div v-if="cartItems" class="container2">
+  <div v-if="cartItems" class="ww">
     <ul class="infinite-list" infinite-scroll-immediate="false">
       <TransitionGroup name="fade">
         <li v-for="person of cartItems" :key="person.id" class="infinite-list-item">
@@ -39,6 +39,15 @@ const deleteFavoriteCat = (person) => {
 </template>
 
 <style scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 1.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
 .zaga {
   width: 100%;
   text-align: center;
@@ -49,19 +58,28 @@ const deleteFavoriteCat = (person) => {
   line-height: 21px;
   letter-spacing: 0.25px;
 }
-.hiddenWatch {
-  visibility: visible;
-}
+
 .watch {
   visibility: visible;
 }
 .cat {
   position: relative;
+  
+}
+.catHover:hover{
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  scale: 1.1;
+  transition: 1s
+}
+.infinite-list-item{
+  width: 225px;
+  height: 225px
 }
 .catHover {
-  width: 257px;
-  height: 256px;
+  width: 225px;
+  height: 225px;
   cursor: pointer;
+  transition: 1s
 }
 
 .heart {
@@ -69,6 +87,7 @@ const deleteFavoriteCat = (person) => {
   bottom: 19px;
   right: 15px;
   z-index: 1000;
+  opacity: 0;
 }
 .fullheart {
   position: absolute;
@@ -76,98 +95,71 @@ const deleteFavoriteCat = (person) => {
   right: 15px;
   z-index: 1000;
   visibility: visible;
-  opacity: 0;
+}
+.hiddenWatch {
+  visibility: visible !important;
 }
 
-.cat:hover .fullheart {
+.cat:hover .heart {
   opacity: 1;
 }
-
-.name__info {
-  font-size: 10px;
+.ww {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  flex-wrap: wrap;
+  padding-bottom: 100px;
 }
-.container2 {
-  padding-left: 5%;
-  padding-right: 5%;
+.infinite-list {
+  height: 99%;
+  padding-left: 3%;
+  padding-right: 3%;
+  list-style: none;
+  width: 90%;
+  padding: 0;
+}
+.infinite-list .infinite-list-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--el-color-primary);
+  margin-bottom: 48px;
+  border-radius: 20px;
+}
+.infinite-list .infinite-list-item + .list-item {
+  margin-top: 10px;
 }
 .infinite-list {
   display: grid;
-  grid-template-columns: 33% 33% 33%;
-  list-style-type: none;
-  padding-left: 0;
-}
-.photo {
-  width: 100%;
-  height: 45vh;
-  border-radius: 20px 20px 0 0;
-}
-.personContainer {
-  text-decoration: none;
-  border: 2px transparent solid;
-}
-.infinite-list-item:hover {
-  scale: 1.03;
-  transition: 0.3s;
-}
-.infinite-list-item {
-  border-radius: 20px;
-  margin: 10px;
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-  width: 56%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  margin: 0 auto;
-  margin-bottom: 20px;
-}
-.name {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-.name__text {
-  font-weight: 700;
-  margin-bottom: 10px;
-  width: 100%;
-  justify-content: center;
-  display: flex;
-  font-size: 18px;
-}
-.elll {
-  margin-top: 10px;
-  width: 100%;
-  padding: 10px;
-  border-radius: 0 0 20px 20px;
+  grid-template-columns: 20% 20% 20% 20% 20%;
 }
 
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.5s ease;
+
+.err {
+  display: flex;
+  justify-content: center;
 }
 
-.fade-enter-from,
-.fade-leave-to {
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.5s ease;
+}
+.list-enter-from,
+.list-leave-to {
   opacity: 0;
+  transform: translateX(30px);
 }
 
 @media screen and (max-width: 600px) {
-  .infinite-list2 {
-    margin-bottom: 20px;
+  .infinite-list {
     grid-template-columns: 100%;
-    padding: 0;
   }
-  .infinite-list2-item {
-    margin-bottom: 20px;
-    width: 94%;
-  }
-  .elll {
-    padding-top: 10px;
+  .infinite-list-item{
     width: 100%;
-    margin: 0 auto;
   }
-  .name {
-    margin-bottom: 10px;
+  .err {
+    margin-top: 10px;
   }
 }
 </style>
