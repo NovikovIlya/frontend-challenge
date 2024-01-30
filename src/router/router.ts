@@ -12,7 +12,7 @@ const routes = [
     component: HomeCats,
   },
   {
-    path: '/favorite',
+    path: '/frontend-challenge/favorite',
     name: 'FavoriteList',
     component: FavoriteList,
   },

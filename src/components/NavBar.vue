@@ -25,7 +25,7 @@ const activeTwo = () => {
           <span class="text">Все котики</span>
         </div></RouterLink
       >
-      <RouterLink to="/favorite" class="td"
+      <RouterLink to="/frontend-challenge/favorite" class="td"
         ><div :class="{ active: active === 2 }" @click="activeTwo" class="right">
           <span class="text">Любимые котики</span>
         </div></RouterLink
