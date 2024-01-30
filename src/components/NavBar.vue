@@ -4,7 +4,7 @@ import 'element-plus/es/components/message/style/css';
 import 'element-plus/es/components/message-box/style/css';
 
 //data
-const active = ref(Number(JSON.parse(localStorage.getItem('active'))) || 1);
+const active = ref(window.location.href.includes('favorite') ? 2 : 1);
 
 //functions
 const activeOne = () => {
@@ -15,6 +15,15 @@ const activeTwo = () => {
   active.value = 2;
   localStorage.setItem('active', '2');
 };
+
+//Lifecycle hooks
+onMounted(()=>{
+  if(window.location.href.includes('favorite')){
+    activeTwo()
+  }else{
+    activeOne()
+  }
+})
 </script>
 
 <template>
