@@ -20,12 +20,12 @@ const activeTwo = () => {
 <template>
   <div class="navigation-example">
     <div class="containerNav">
-      <RouterLink to="/" class="td"
+      <RouterLink to="/frontendChallenge" class="td"
         ><div :class="{ active: active === 1 }" @click="activeOne" class="left">
           <span class="text">Все котики</span>
         </div></RouterLink
       >
-      <RouterLink to="/favorite" class="td"
+      <RouterLink to="/frontendChallenge/favorite" class="td"
         ><div :class="{ active: active === 2 }" @click="activeTwo" class="right">
           <span class="text">Любимые котики</span>
         </div></RouterLink
