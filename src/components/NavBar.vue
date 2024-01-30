@@ -2,7 +2,6 @@
 import { ref, watch } from 'vue';
 import 'element-plus/es/components/message/style/css';
 import 'element-plus/es/components/message-box/style/css';
-import style from '../assets/style.css';
 
 //data
 const active = ref(Number(JSON.parse(localStorage.getItem('active'))) || 1);

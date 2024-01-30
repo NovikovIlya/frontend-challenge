@@ -57,7 +57,6 @@ onMounted(() => {
 </script>
 
 <template>
-  <KeepAlive>
     <div class="ww" style="width: 100%">
       <ul
         v-show="localLoad"
@@ -104,7 +103,6 @@ onMounted(() => {
         </el-col>
       </div>
     </div>
-  </KeepAlive>
 </template>
 
 <style scoped lang="scss">
