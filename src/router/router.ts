@@ -7,12 +7,12 @@ import NotFound from '../page/NotFound.vue'
 
 const routes = [
   {
-    path: '/frontendChallenge',
+    path: '/frontend-challenge',
     name: 'HomeCats',
     component: HomeCats,
   },
   {
-    path: '/frontendChallenge/favorite',
+    path: '/frontend-challenge/favorite',
     name: 'FavoriteList',
     component: FavoriteList,
   },
