@@ -82,4 +82,15 @@ const activeTwo = () => {
   letter-spacing: 0.25px;
   text-align: center;
 }
+@media screen and (max-width: 600px) {
+  .containerNav {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 50% 50%;
+  }
+  .left,.right{
+    width: 100%;
+  }
+  
+}
 </style>

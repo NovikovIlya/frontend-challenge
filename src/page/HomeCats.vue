@@ -228,7 +228,7 @@ onMounted(() => {
   .infinite-list-item {
     width: 100%;
   }
-  .containerNav {
+  .containerNav{
     width: 100%;
   }
   .err {
