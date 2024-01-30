@@ -1,11 +1,5 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue';
-import { useQuery } from '@tanstack/vue-query';
-import CustomMenu from './UI/CustomMenu.vue';
-import { useMovieStore } from '../store/index';
-import { DataType } from '../types';
-import { ElMessage } from 'element-plus';
-import debounce from 'lodash.debounce';
 import 'element-plus/es/components/message/style/css';
 import 'element-plus/es/components/message-box/style/css';
 import style from '../assets/style.css';
@@ -24,25 +18,31 @@ const activeTwo = ()=>{
 
 <template>
   <div class="navigation-example">
-    <RouterLink to="/"><div :class="{active: active === 1}" @click="activeOne" class="left"><span  class="text">Все котики</span></div></RouterLink>
-    <RouterLink to="/favorite"><div :class="{active: active === 2}" @click="activeTwo" class="right"><span  class="text">Любимые котики</span></div></RouterLink>
+    <div class="containerNav">
+      <RouterLink to="/"><div :class="{active: active === 1}" @click="activeOne" class="left"><span  class="text">Все котики</span></div></RouterLink>
+      <RouterLink to="/favorite"><div :class="{active: active === 2}" @click="activeTwo" class="right"><span  class="text">Любимые котики</span></div></RouterLink>
+    </div>
   </div>
 </template>
 
 <style scoped>
-body{
-  margin: 0;
+
+.containerNav{
+  width: 90%;
+  display: flex;
+
 }
 .navigation-example {
   background-color: #2196f3;
   box-shadow: var(--horizontal-sheet);
   height: 64px;
-  width: 1440px3;
+  width: 100%;
   display: flex;
+  justify-content: center;
   
 }
 .left{
-  margin-left: 62px;
+  /* margin-left: 62px; */
 }
 .left,.right {
   display: flex;

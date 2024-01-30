@@ -133,13 +133,20 @@ onMounted(() => {
   opacity: 1;
 }
 .ww {
+  width: 100%;
+  display: flex;
+  justify-content: center;
   margin-top: 10px;
+  flex-wrap: wrap;
+  padding-bottom: 100px;
 }
 .infinite-list {
   height: 99%;
   padding-left: 3%;
   padding-right: 3%;
   list-style: none;
+  width: 90%;
+  padding: 0;
 }
 .infinite-list .infinite-list-item {
   display: flex;
