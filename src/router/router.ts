@@ -7,7 +7,7 @@ import NotFound from '../page/NotFound.vue'
 
 const routes = [
   {
-    path: '/home',
+    path: '/frontend-challenge',
     name: 'HomeCats',
     component: HomeCats,
   },
