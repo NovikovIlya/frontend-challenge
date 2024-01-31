@@ -3,15 +3,18 @@ import { ref } from 'vue';
 import cachedAxios from '../axios.js';
 import { Data } from '../types/index.js';
 
-
 export const useMovieStore = defineStore('movieStore', () => {
   //data
-  const data = ref<Data[]>([])
+  const data = ref<Data[]>([]);
   const isLoading = ref(false);
   const isError = ref(false);
   const page = ref(0);
+  const localLoad = ref(false);
 
   //functions
+  const setLocalad = () => {
+    localLoad.value = true;
+  };
   const load = () => {
     if (page.value === 1000) {
       alert('Последний страница');
@@ -32,7 +35,7 @@ export const useMovieStore = defineStore('movieStore', () => {
           },
         },
       );
-  
+
       const dataZ = res.data;
       data.value = [...data.value, ...dataZ];
       isError.value = false;
@@ -44,14 +47,14 @@ export const useMovieStore = defineStore('movieStore', () => {
     }
   };
 
-
-
   return {
     data,
     isLoading,
     isError,
     load,
     getCats,
-    page
+    page,
+    localLoad,
+    setLocalad,
   };
 });
