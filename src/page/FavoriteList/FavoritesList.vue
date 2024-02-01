@@ -37,7 +37,9 @@ const deleteFavoriteCat = (person) => {
     </ul>
   </div>
   <div v-if="cartItems.length === 0">
-    <el-empty description="Нет добавленных в 'Любимое' котиков ;c" />
+    <TransitionGroup name="fade1">
+      <el-empty description="Нет добавленных в 'Любимое' котиков ;c" />
+    </TransitionGroup>
   </div>
 </template>
 
@@ -49,6 +51,15 @@ const deleteFavoriteCat = (person) => {
 
 .fade-enter-from,
 .fade-leave-to {
+  opacity: 0;
+}
+.fade1-enter-active,
+.fade1-leave-active {
+  transition: opacity 5.5s ease;
+}
+
+.fade1-enter-from,
+.fade1-leave-to {
   opacity: 0;
 }
 .zaga {
