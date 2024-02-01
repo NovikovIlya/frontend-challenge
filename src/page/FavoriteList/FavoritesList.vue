@@ -36,11 +36,11 @@ const deleteFavoriteCat = (person) => {
       </TransitionGroup>
     </ul>
   </div>
-  <div v-if="cartItems.length === 0">
-    <TransitionGroup name="fade1">
+  <TransitionGroup name="fade1">
+    <div v-if="cartItems.length === 0">
       <el-empty description="Нет добавленных в 'Любимое' котиков ;c" />
-    </TransitionGroup>
-  </div>
+    </div>
+  </TransitionGroup>
 </template>
 
 <style scoped>
@@ -80,9 +80,8 @@ const deleteFavoriteCat = (person) => {
   position: relative;
   height: 225px;
   transition: 1s;
-  
 }
-.cat:hover{
+.cat:hover {
   box-shadow: rgba(0, 0, 0, 0.65) 0px 5px 15px;
   scale: 1.1;
   transition: 1s;
@@ -92,11 +91,11 @@ const deleteFavoriteCat = (person) => {
   scale: 1.1;
   transition: 1s
 } */
-.infinite-list-item{
+.infinite-list-item {
   width: 225px;
-  height: 225px
+  height: 225px;
 }
-.cat:hover{
+.cat:hover {
   box-shadow: rgba(0, 0, 0, 0.65) 0px 5px 15px;
   scale: 1.1;
   transition: 1s;
@@ -105,7 +104,7 @@ const deleteFavoriteCat = (person) => {
   width: 225px;
   height: 225px;
   cursor: pointer;
-  transition: 1s
+  transition: 1s;
 }
 
 .heart {
@@ -129,7 +128,7 @@ const deleteFavoriteCat = (person) => {
 .cat:hover .heart {
   opacity: 1;
 }
-.heart:hover{
+.heart:hover {
   cursor: pointer;
   transition: 1s;
   background-image: url('https://cdn.builder.io/api/v1/image/assets/TEMP/45cce83542570fa99a82a171165d936e831b1ca10784f6b2df86696116852751?');
@@ -166,7 +165,6 @@ const deleteFavoriteCat = (person) => {
   grid-template-columns: 20% 20% 20% 20% 20%;
 }
 
-
 .err {
   display: flex;
   justify-content: center;
@@ -186,7 +184,7 @@ const deleteFavoriteCat = (person) => {
   .infinite-list {
     grid-template-columns: 100%;
   }
-  .infinite-list-item{
+  .infinite-list-item {
     width: 100%;
   }
   .err {
