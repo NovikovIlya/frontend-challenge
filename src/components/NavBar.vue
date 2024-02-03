@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch,onMounted } from 'vue';
+import { onMounted, ref } from 'vue';
 import 'element-plus/es/components/message/style/css';
 import 'element-plus/es/components/message-box/style/css';
 
@@ -24,18 +24,19 @@ onMounted(()=>{
     activeOne()
   }
 })
+
 </script>
 
 <template>
   <div class="navigation-example">
     <div class="containerNav">
-      <RouterLink to="/frontend-challenge" class="td"
-        ><div :class="{ active: active === 1 }" @click="activeOne" class="left">
+      <RouterLink to="/" class="td"
+        ><div :class="{ active: active===1}" @click="activeOne" class="left">
           <span class="text">Все котики</span>
         </div></RouterLink
       >
-      <RouterLink to="/frontend-challenge/favorite" class="td"
-        ><div :class="{ active: active === 2 }" @click="activeTwo" class="right">
+      <RouterLink to="/favorite" class="td"
+        ><div :class="{ active: active===2 }" @click="activeTwo" class="right">
           <span class="text">Любимые котики</span>
         </div></RouterLink
       >
@@ -91,6 +92,12 @@ onMounted(()=>{
   line-height: 21px;
   letter-spacing: 0.25px;
   text-align: center;
+}
+@media screen and (min-width: 1440px) {
+  .containerNav,.infinite-list{
+    width: 75% ;
+  }
+  
 }
 @media screen and (max-width: 600px) {
   .containerNav {
